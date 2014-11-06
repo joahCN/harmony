@@ -540,9 +540,10 @@ module.exports = function ( grunt ) {
    * `delta`) and then add a new task called `watch` that does a clean build
    * before watching for changes.
    */
+  grunt.registerTask('jsunit',['karmaconfig','karma:continuous']);
   grunt.renameTask( 'watch', 'delta' );
-  grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
-
+  grunt.registerTask( 'watch', [ 'build',  'delta' ] );
+//'karma:unit',
   /**
    * The default task is to build and compile.
    */
@@ -554,9 +555,9 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'build', [
     'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'less:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs', 'copy:build_vendorjs', 'index:build', 'karmaconfig',
-    'karma:continuous' 
+    'copy:build_appjs', 'copy:build_vendorjs', 'index:build'
   ]);
+    //, 'karmaconfig','karma:continuous'
 
   /**
    * The `compile` task gets your app ready for deployment by concatenating and
